@@ -10,7 +10,7 @@ Dans ce jeu, le joueur contrôle un cycliste qui doit franchir les obstacles pou
 
 <kbd>DOWN</kbd> : Freiner
 
-<kbd>LEFT</kbd>/<kbd>RIGHT<kbd> : Se pencher
+<kbd>LEFT</kbd>/<kbd>RIGHT</kbd> : Se pencher
 
 <kbd>SPACE</kbd> : Se retourner
 
