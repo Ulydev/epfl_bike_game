@@ -43,11 +43,7 @@ public class Driver extends Stickman implements Actor {
     }
 
     public void draw(Canvas canvas, float alpha) {
-        Vector position = bike.getPosition();
-        Transform transform = bike.getTransform().translated(position.mul(-1));
-        float angle = transform.getAngle();
-        transform = transform.rotated(angle).scaled(bike.getScaleX(), 1).rotated(-angle).translated(position);
-        super.draw(canvas, transform, alpha);
+        super.draw(canvas, bike.getScaledTransform(), alpha);
     }
     public void draw(Canvas canvas) {
         draw(canvas, 1);
@@ -87,7 +83,7 @@ public class Driver extends Stickman implements Actor {
     }
 
     private Vector getKneeLocation(float angle) {
-        return new Vector(0.1f, 0.6f).add(new Vector((float)Math.cos(angle) * 0.2f, (float)Math.sin(angle) * 0.25f));
+        return new Vector(0.1f, 0.6f).add(new Vector((float)Math.cos(angle) * bike.getPedalRadius(), (float)Math.sin(angle) * bike.getPedalRadius()));
     }
     private Vector getLeftKneeLocation() {
         return getKneeLocation(bike.getPedalAngle() + (float)Math.PI);

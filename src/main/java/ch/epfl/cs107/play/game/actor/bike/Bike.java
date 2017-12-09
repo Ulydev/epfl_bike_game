@@ -15,6 +15,8 @@ import java.awt.event.KeyEvent;
 public class Bike extends GameEntity implements Actor {
 
     private float pedalAngle = 0;
+    private float pedalRadius  = 0.22f;
+
     private float scaleX;
     private int direction;
     private Wheel leftWheel;
@@ -127,17 +129,38 @@ public class Bike extends GameEntity implements Actor {
 
     @Override
     public void draw(Canvas canvas) {
+        drawBody(canvas);
+        driver.draw(canvas, driverAlpha);
+        leftWheel.draw(canvas);
+        rightWheel.draw(canvas);
+    }
+
+    public void drawBody(Canvas canvas) {
         canvas.drawShape(new Polyline(
                 -WHEEL_OFFSET, 0,
                 -0.5f, 0.5f,
                 0.5f, 0.5f,
-                WHEEL_OFFSET, 0),
-                getTransform(), null, Color.WHITE, 0.1f, 1, 0
+                WHEEL_OFFSET, 0
+                ), getTransform(), null, Color.LIGHT_GRAY, 0.1f, 1, 0
         );
+        canvas.drawShape(new Polyline(
+                -0.2f, 0.5f,
+                0, 0.15f
+                ), getScaledTransform(), null, Color.LIGHT_GRAY, 0.05f, 1, 0
+        );
+        for (int i = 0; i < 2; i++)
+            canvas.drawShape(new Polyline(
+                    0, 0.15f,
+                    (float)Math.cos(pedalAngle + i * Math.PI) * pedalRadius, 0.15f + (float)Math.sin(pedalAngle + i * Math.PI) * pedalRadius
+            ), getScaledTransform(), null, Color.LIGHT_GRAY, 0.05f, 1, 0);
+    }
 
-        driver.draw(canvas, driverAlpha);
-        leftWheel.draw(canvas);
-        rightWheel.draw(canvas);
+    public Transform getScaledTransform() {
+        Vector position = getPosition();
+        Transform transform = getTransform().translated(position.mul(-1));
+        float angle = transform.getAngle();
+        transform = transform.rotated(angle).scaled(scaleX, 1).rotated(-angle).translated(position);
+        return transform;
     }
 
     @Override
@@ -158,12 +181,11 @@ public class Bike extends GameEntity implements Actor {
         return driver;
     }
 
-    public float getScaleX() {
-        return scaleX;
-    }
-
     public float getPedalAngle() {
         return pedalAngle;
+    }
+    public float getPedalRadius() {
+        return pedalRadius;
     }
 
     private void switchDirection() {
