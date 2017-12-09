@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="70" height="30" tilewidth="1" tileheight="1" nextobjectid="63">
+ <objectgroup name="objects">
+  <object id="12" name="Bike" type="Bike" x="10" y="12" width="1" height="1"/>
+  <object id="14" name="Finish" type="Finish" x="54" y="22" width="1" height="1"/>
+  <object id="42" type="Terrain" x="48" y="30">
+   <polyline points="0,0 1,-7 9,-7 10,-10 13,-15 13,-19 12,-21 8,-23 6,-26 3,-27 2,-30"/>
+  </object>
+  <object id="43" type="Terrain" x="40" y="30">
+   <polyline points="0,0 -1,-7 -7,-7 -9,-4 -12,-2 -16,-1 -19,-1 -21,-2 -23,-4 -25,-10 -26,-17 -33,-17 -35,-21 -35,-25 -34,-27 -30,-29 -29,-30"/>
+  </object>
+  <object id="54" name="TopBound" type="Terrain" x="11" y="0">
+   <polyline points="0,0 39,0"/>
+  </object>
+  <object id="55" name="BottomBound" type="Terrain" x="40" y="30">
+   <polyline points="0,0 8,0"/>
+  </object>
+  <object id="57" type="DynamicObject" x="35" y="23">
+   <polygon points="1.5,-0.015625 2,-1 2,-12 3,-12 2.84375,-0.025"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="decoration">
+  <object id="60" type="Decoration" x="12" y="15">
+   <polyline points="0,0 0.434783,3.08696 -0.130435,2.73913 0.478261,3.17391 0.782609,2.65217 0.478261,3.21739"/>
+  </object>
+  <object id="61" type="Decoration" x="13" y="21">
+   <polyline points="0,0 1.3913,3.91304 0.608696,3.6087 1.3913,3.95652 1.69565,3.26087 1.3913,4"/>
+  </object>
+  <object id="62" type="Decoration" x="16" y="27">
+   <polyline points="0,0 1.52174,1.43478 0.826087,1.52174 1.52174,1.43478 1.47826,0.782609 1.56522,1.47826"/>
+  </object>
+ </objectgroup>
+</map>

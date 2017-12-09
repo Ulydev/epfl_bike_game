@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="50" height="30" tilewidth="1" tileheight="1" nextobjectid="114">
+ <objectgroup name="objects">
+  <object id="12" name="Bike" type="Bike" x="7" y="15" width="1" height="1"/>
+  <object id="14" name="Finish" type="Finish" x="44" y="18" width="1" height="1"/>
+  <object id="110" type="Terrain" x="4" y="17">
+   <polyline points="0,0 -1,-3 0,-7 0,-11 2,-14 6,-15 10,-15 14,-13 17,-13 23,-14 31,-14 37,-15 41,-14 44,-9 43,-4 43,-2 44,1 43,2 39,2 38,1 36,1 36,7 13,7 8,4 6,0 0,0"/>
+  </object>
+  <object id="111" type="Terrain" x="14" y="17">
+   <polyline points="0,1 3,3 5,3 6,1 7,0 0,1"/>
+  </object>
+  <object id="112" type="AnchoredObject" x="24" y="18">
+   <properties>
+    <property name="Anchor1X" type="float" value="26"/>
+    <property name="Anchor1Y" type="float" value="12"/>
+    <property name="Anchor2X" type="float" value="26"/>
+    <property name="Anchor2Y" type="float" value="18"/>
+   </properties>
+   <polygon points="0,0 1,1 3,1 4,0"/>
+  </object>
+  <object id="113" type="AnchoredObject" x="32" y="18">
+   <properties>
+    <property name="Anchor1X" type="float" value="34"/>
+    <property name="Anchor1Y" type="float" value="12"/>
+    <property name="Anchor2X" type="float" value="34"/>
+    <property name="Anchor2Y" type="float" value="18"/>
+   </properties>
+   <polygon points="0,0 1,1 3,1 4,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="crates"/>
+ <objectgroup name="decoration"/>
+</map>

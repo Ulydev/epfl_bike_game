@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="80" height="30" tilewidth="1" tileheight="1" nextobjectid="101">
+ <objectgroup name="objects">
+  <object id="12" name="Bike" type="Bike" x="7" y="18" width="1" height="1"/>
+  <object id="14" name="Finish" type="Finish" x="75" y="18" width="1" height="1"/>
+  <object id="88" type="Terrain" x="5" y="20">
+   <polyline points="1,0 5,0 8,1 11,1 13,0 14,-2 14,-4 13,-6 17,-6"/>
+  </object>
+  <object id="90" type="Terrain" x="6" y="20">
+   <polyline points="0,0 -2,-1 -3,-3 -2,-5 -1,-6 1,-6 3,-5 5.26087,-3.34783 7.08696,-3.47826 8.47826,-4.91304 6.13043,-4.30435 4.47826,-5.04348 2.86957,-6.73913 2.21739,-9.3913 3.3913,-11.4348 6.43478,-12.4348 10.087,-12.1739 18,-10"/>
+  </object>
+  <object id="91" type="SlippyTerrain" x="22" y="14">
+   <polyline points="0,0 1,3 2,4 4,5 6,5 8,4 9,3"/>
+  </object>
+  <object id="92" type="Terrain" x="31" y="17">
+   <polyline points="0,0 -0.130435,1.86957 2,4 6,6 8,8 10,9 13,10 16,10 19,11 20,11 21,10 21,9 20,7 19.5217,5.17391 20.3913,4 19.5652,0.73913 21,0"/>
+  </object>
+  <object id="93" type="Terrain" x="52" y="17">
+   <polyline points="0,0 8,0 10,1 12,3 12,6 15,6 16,3 20,3 21,2 26,2 27,1 26,-3 24,-4 23,-6 20,-7 17,-7 12,-9 3,-8 -3,-8 -5,-10 -7,-9 -10,-10 -12,-9 -15,-8 -21,-9 -24,-8 -26,-7 -28,-7"/>
+  </object>
+  <object id="100" type="AnchoredObject" x="33" y="17">
+   <properties>
+    <property name="Anchor1X" type="float" value="40"/>
+    <property name="Anchor1Y" type="float" value="8"/>
+    <property name="Anchor2X" type="float" value="40"/>
+    <property name="Anchor2Y" type="float" value="17"/>
+   </properties>
+   <polygon points="1,0 7,1 13,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="crates">
+  <object id="99" type="Crate" x="59" y="14" width="1" height="1"/>
+  <object id="98" type="Crate" x="58" y="14" width="1" height="1"/>
+  <object id="97" type="Crate" x="59" y="16" width="1" height="1"/>
+  <object id="96" type="Crate" x="59" y="15" width="1" height="1"/>
+  <object id="95" type="Crate" x="58" y="16" width="1" height="1"/>
+  <object id="94" type="Crate" x="58" y="15" width="1" height="1"/>
+ </objectgroup>
+ <objectgroup name="decoration"/>
+</map>
