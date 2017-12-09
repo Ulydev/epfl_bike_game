@@ -55,7 +55,7 @@ Pour créer un nouveau niveau, dans l'éditeur Tiled, commencer par créer une n
 
 <img src="https://img15.hostingpics.net/pics/562442ScreenShot20171209at185115.png" width="200"/>
 
-Pour qu'un niveau soit valide, il est nécessaire de définir un point de départ pour Bike, ainsi qu'un Finish (voir [Création d'un nouvel objet](#creation-d-un-nouvel-objet)).
+Pour qu'un niveau soit valide, il est nécessaire de définir un point de départ pour Bike, ainsi qu'un Finish (voir [Création d'un nouvel objet](#création-dun-nouvel-objet)).
 Le Finish est en contact avec le sol, tandis que le Bike sera de préférence un carreau au-dessus, pour laisser une marge de manoeuvre au moteur physique.
 
 <img src="https://img15.hostingpics.net/pics/120731ScreenShot20171209at191516.png" width="200"/>
