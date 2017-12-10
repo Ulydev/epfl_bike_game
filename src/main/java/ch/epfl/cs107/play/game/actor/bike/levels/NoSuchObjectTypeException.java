@@ -2,15 +2,15 @@ package ch.epfl.cs107.play.game.actor.bike.levels;
 
 public class NoSuchObjectTypeException extends Exception {
 
-    private String objectType;
+    private String type;
 
     public NoSuchObjectTypeException(String type) {
         super("No such object type");
-        objectType = type;
+        this.type = type;
     }
 
     public String getObjectType() {
-        return objectType;
+        return type;
     }
 
 }
