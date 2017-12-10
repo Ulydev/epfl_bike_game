@@ -31,6 +31,10 @@ public class XmlBikeLevelLoader {
         this.filePath = filePath;
     }
 
+    /**
+     * Load and parse the provided XML file (given in the constructor)
+     * @return the normalized Document instance of the file
+     */
     private Document loadFile() {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder;
@@ -47,10 +51,18 @@ public class XmlBikeLevelLoader {
         }
     }
 
-    public List<Actor> loadActors(ActorGame game) {
+    /**
+     * Parse and load all actors from the XML/Tiled document
+     * @param game : the ActorGame instance to put actors in
+     * @return all loaded actors in a list
+     * @throws InvalidLevelException
+     * @see #loadFile()
+     * @see #loadActorFromNode(ActorGame, Node)
+     */
+    public List<Actor> loadActors(ActorGame game) throws InvalidLevelException {
         Document document = loadFile();
         if (document == null)
-            throw new Error("Can't load level");
+            throw new InvalidLevelException();
 
         NodeList nodeList = document.getElementsByTagName("object");
 
@@ -60,18 +72,26 @@ public class XmlBikeLevelLoader {
                 Actor actor = loadActorFromNode(game, nodeList.item(i));
                 if (actor != null)
                     actors.add(actor);
-            } catch (NoSuchObjectTypeException error) {
-                System.out.println("Skipped object with type \"" + error.getObjectType() + "\"");
+            } catch (EmptyObjectTypeException | NoSuchObjectTypeException error) {
+                System.out.println("Skipped object");
             }
         }
         return actors;
     }
 
-    private Actor loadActorFromNode(ActorGame game, Node node) throws NoSuchObjectTypeException {
+    /**
+     * Loads an actor by parsing the specified node
+     * @param game : the instance of the ActorGame to create the actor in
+     * @param node : the current Node instance to parse
+     * @return the loaded Actor
+     * @throws EmptyObjectTypeException
+     * @throws NoSuchObjectTypeException
+     */
+    private Actor loadActorFromNode(ActorGame game, Node node) throws EmptyObjectTypeException, NoSuchObjectTypeException {
         NamedNodeMap attributes = node.getAttributes();
         Node typeNode = attributes.getNamedItem("type");
         if (typeNode == null)
-            throw new Error("No type provided for object");
+            throw new EmptyObjectTypeException();
         String type = typeNode.getNodeValue();
 
         float
@@ -143,11 +163,23 @@ public class XmlBikeLevelLoader {
         }
     }
 
+    /**
+     * Retrieves the value of a named item from the specified map
+     * @param map : the NamedNodeMap instance to get the item from
+     * @param itemName
+     * @return the value of the item, or "0" as a placeholder
+     */
     private String getItem(NamedNodeMap map, String itemName) {
         Node node = map.getNamedItem(itemName);
         return (node == null) ? "0" : node.getNodeValue();
     }
 
+    /**
+     * Unserializes a string containing points into an ArrayList
+     * @param serializedPoints : the serialized points in the form "x,x y,y z,z..."
+     * @param origin : the offset to apply to the points
+     * @return the list of points
+     */
     private List<Vector> getPoints(String serializedPoints, Vector origin) {
         List<Vector> points = new ArrayList<>();
         for (String serializedPoint : serializedPoints.split(" ")) {

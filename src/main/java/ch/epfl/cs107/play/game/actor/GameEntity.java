@@ -15,7 +15,6 @@ public abstract class GameEntity {
 
         this.game = game;
 
-        // Create entity
         entity = game.createEntity(fixed, position);
     }
     public GameEntity(ActorGame game, Vector position) {
@@ -34,6 +33,11 @@ public abstract class GameEntity {
         return game;
     }
 
+    /**
+     * Checks whether the provided Entity instance belongs to the GameEntity, without actually providing the Entity
+     * @param entity : the Entity instance to check
+     * @return a boolean, true if the provided Entity belongs to the GameEntity, else false
+     */
     public boolean isEntity(Entity entity) {
         return getEntity() == entity;
     }

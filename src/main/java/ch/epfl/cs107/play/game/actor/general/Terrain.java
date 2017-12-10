@@ -29,6 +29,7 @@ public class Terrain extends GameEntity implements Actor {
         this(game, Vector.ZERO, polyline);
     }
 
+    @Override
     public void draw(Canvas canvas) {
         canvas.drawShape(shape, getTransform(), null, Color.LIGHT_GRAY, 0.1f, 1.0f, 0);
     }

@@ -12,18 +12,15 @@ import java.util.*;
 
 public abstract class ActorGame implements Game {
 
-    // List of game actors
     private List<Actor> actors = new ArrayList<>();
     private List<Actor> addPool = new ArrayList<>();
     private List<Actor> removePool = new ArrayList<>();
 
-    // Physics world
     private World world;
 
     private Window window;
     private FileSystem fileSystem;
 
-    // Viewport properties
     private Vector viewCenter;
     private Vector viewTarget;
     private Positionable viewCandidate;
@@ -32,17 +29,6 @@ public abstract class ActorGame implements Game {
     private static final float VIEW_TARGET_VELOCITY_COMPENSATION = 0.6f;
     private static final float VIEW_INTERPOLATION_RATIO_PER_SECOND = 0.05f;
     private static final float BASE_VIEW_SCALE = 14.0f;
-
-    public Keyboard getKeyboard() {
-        return window.getKeyboard();
-    }
-
-    public Canvas getCanvas() {
-        return window;
-    }
-
-    // Main actor
-    private Actor payload;
 
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
@@ -63,12 +49,36 @@ public abstract class ActorGame implements Game {
     }
 
     @Override
-    public void end() {
-        for (Actor actor : actors) {
-            actor.destroy();
-        }
+    public void update(float deltaTime) {
+        updatePools();
+
+        world.update(deltaTime);
+
+        for (Actor actor : actors)
+            actor.update(deltaTime);
+
+        updateCamera(deltaTime);
+
+        for (Actor actor : actors)
+            actor.draw(window);
     }
 
+    /**
+     * Processes addPool and removePool, to avoid modifying the actors list while iterating through it
+     */
+    private void updatePools() {
+        for (Actor actor : addPool)
+            actors.add(actor);
+        addPool.clear();
+        for (Actor actor : removePool)
+            actors.remove(actor);
+        removePool.clear();
+    }
+
+    /**
+     * Updates the shake and position of the camera according to its viewShake and viewCandidate
+     * @param deltaTime
+     */
     private void updateCamera(float deltaTime) {
         viewShake *= 0.9;
         float
@@ -95,30 +105,16 @@ public abstract class ActorGame implements Game {
     }
 
     @Override
-    public void update(float deltaTime) {
-        // Process pools
-        for (Actor actor : addPool)
-            actors.add(actor);
-        addPool.clear();
-        for (Actor actor : removePool)
-            actors.remove(actor);
-        removePool.clear();
-
-        // Update physics
-        world.update(deltaTime);
-
-        // Update all actors
-        for (Actor actor : actors)
-            actor.update(deltaTime);
-
-        // Update camera position
-        updateCamera(deltaTime);
-
-        // Draw all actors
-        for (Actor actor : actors)
-            actor.draw(window);
+    public void end() {
+        for (Actor actor : actors) {
+            actor.destroy();
+        }
     }
 
+    /**
+     * Sets the camera target to follow
+     * @param viewCandidate : the Positionable instance to follow
+     */
     public void setViewCandidate(Positionable viewCandidate) {
         this.viewCandidate = viewCandidate;
     }
@@ -129,6 +125,12 @@ public abstract class ActorGame implements Game {
         viewShake = shake;
     }
 
+    /**
+     * Creates a basic entity
+     * @param fixed : whether the entity is dynamic or not
+     * @param position : the initial position of the entity
+     * @return the built entity
+     */
     public Entity createEntity(boolean fixed, Vector position) {
         EntityBuilder entityBuilder = world.createEntityBuilder();
         entityBuilder.setFixed(fixed);
@@ -136,6 +138,11 @@ public abstract class ActorGame implements Game {
         return entityBuilder.build();
     }
 
+    /**
+     * Creates a ConstraintBuilder instance
+     * @param type : the literal name of the ConstraintBuilder type
+     * @return the corresponding ConstraintBuilder instance, or null otherwise
+     */
     public ConstraintBuilder createConstraintBuilder(String type) {
         switch(type) {
             case "WheelConstraintBuilder":
@@ -150,25 +157,38 @@ public abstract class ActorGame implements Game {
         return null;
     }
 
+    /**
+     * Adds an actor to addPool (to be added later)
+     * @param actor
+     */
     public void addActor(Actor actor) {
         addPool.add(actor);
     }
+
+    /**
+     * Adds multiple actors to addPool
+     * @param actors : a list of actors
+     */
     public void addActors(List<Actor> actors) {
         addPool.addAll(actors);
     }
+
+    /**
+     * Adds an actor to removePool (to be removed later)
+     * @param actor
+     */
     public void removeActor(Actor actor) {
         removePool.add(actor);
     }
 
+    public Canvas getCanvas() {
+        return window;
+    }
     protected FileSystem getFileSystem() {
         return fileSystem;
     }
-
-    public Actor getPayload() {
-        return payload;
-    }
-    public void setPayload(Actor actor) {
-        payload = actor;
+    public Keyboard getKeyboard() {
+        return window.getKeyboard();
     }
 
 }

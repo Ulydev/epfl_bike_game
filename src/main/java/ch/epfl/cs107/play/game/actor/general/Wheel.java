@@ -27,6 +27,31 @@ public class Wheel extends GameEntity implements Actor {
         partBuilder.build();
     }
 
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.drawShape(new Circle(radius), getTransform(), null, Color.WHITE, 0.1f, 1.0f, 0);
+
+        int lines = 6;
+        for (int i = 0; i < lines; i++)
+            canvas.drawShape(
+                    new Polyline(0, 0, 0, radius),
+                    getTransform().rotated((float)(Math.PI * 2 * i / lines), getPosition()),
+                    null, Color.WHITE, 0.05f, 1.0f, 0
+            );
+    }
+
+    @Override
+    public void destroy() {
+        detach();
+        super.destroy();
+    }
+
+    /**
+     * Attach the Wheel instance to another entity, using a WheelConstraint
+     * @param vehicle : the entity to attach the Wheel instance to
+     * @param anchor : the anchor of the vehicle
+     * @param axis : the axis of the constraint
+     */
     public void attach(Entity vehicle, Vector anchor, Vector axis) {
         WheelConstraintBuilder wheelConstraintBuilder =
                 (WheelConstraintBuilder)(getOwner().createConstraintBuilder("WheelConstraintBuilder"));
@@ -42,19 +67,19 @@ public class Wheel extends GameEntity implements Actor {
         constraint = wheelConstraintBuilder.build();
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        canvas.drawShape(new Circle(radius), getTransform(), null, Color.WHITE, 0.1f, 1.0f, 0);
-
-        int lines = 6;
-        for (int i = 0; i < lines; i++)
-            canvas.drawShape(
-                    new Polyline(0, 0, 0, radius),
-                    getTransform().rotated((float)(Math.PI * 2 * i / lines), getPosition()),
-                    null, Color.WHITE, 0.05f, 1.0f, 0
-            );
+    /**
+     * Destroys the WheelConstraint, if there is any
+     */
+    public void detach() {
+        if (constraint != null)
+            constraint.destroy();
+        constraint = null;
     }
 
+    /**
+     * Sets the constraint speed
+     * @param speed
+     */
     public void power(float speed) {
         if (constraint != null) {
             constraint.setMotorEnabled(true);
@@ -62,28 +87,23 @@ public class Wheel extends GameEntity implements Actor {
         }
     }
 
+    /**
+     * Disables the motor
+     */
     public void relax() {
         if (constraint != null)
             constraint.setMotorEnabled(false);
     }
 
-    public void detach() {
-        constraint.destroy();
-        constraint = null;
-    }
-
+    /**
+     * Computes the relative angular velocity of the Wheel instance, according to whether it's attached or not
+     * @return the relative angular velocity of the Wheel instance
+     */
     public float getSpeed() {
         if (constraint != null)
             return getEntity().getAngularVelocity() - constraint.getSecondBody().getAngularVelocity();
         else
             return getEntity().getAngularVelocity();
-    }
-
-    @Override
-    public void destroy() {
-        if (constraint != null)
-            detach();
-        super.destroy();
     }
 
 }

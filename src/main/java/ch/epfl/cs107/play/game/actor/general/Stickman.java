@@ -59,6 +59,9 @@ public class Stickman extends GameEntity implements Actor {
         draw(canvas, getTransform(), 1);
     }
 
+    /**
+     * Body location setters
+     */
     public void setHeadLocation(Vector location) {
         headLocation = location;
     }

@@ -14,6 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SimpleBikeLevel extends Level {
+
+    @Override
     public List<Actor> createAllActors(ActorGame game) {
         return Arrays.asList(
                 new Terrain(game, new Polyline(
@@ -37,4 +39,5 @@ public class SimpleBikeLevel extends Level {
                 new Finish(game, new Vector(16.0f, 3.0f))
         );
     }
+
 }

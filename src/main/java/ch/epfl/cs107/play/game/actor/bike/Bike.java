@@ -155,6 +155,9 @@ public class Bike extends GameEntity implements Actor {
             ), getScaledTransform(), null, Color.LIGHT_GRAY, 0.05f, 1, 0);
     }
 
+    /**
+     * @return the transform of the bike, scaled and rotated according to its direction
+     */
     public Transform getScaledTransform() {
         Vector position = getPosition();
         Transform transform = getTransform().translated(position.mul(-1));

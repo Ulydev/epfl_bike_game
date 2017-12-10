@@ -33,6 +33,11 @@ public class Trigger extends GameEntity implements Actor {
         canvas.drawShape(new Circle(radius), getTransform(), null, Color.WHITE, 0.05f, 1.0f, 0);
     }
 
+    /**
+     * Checks whether the provided GameEntity is touching the Trigger
+     * @param gameEntity : the gameEntity to check collision with
+     * @return a boolean, indicating whether there is a collision or not
+     */
     public boolean isTouching(GameEntity gameEntity) {
         for (Entity entity : listener.getEntities()) {
             if (gameEntity.isEntity(entity))

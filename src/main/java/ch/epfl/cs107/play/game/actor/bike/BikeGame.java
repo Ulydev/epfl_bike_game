@@ -53,10 +53,9 @@ public class BikeGame extends ActorGame {
         super.begin(window, fileSystem);
 
         levels = createLevelList();
-
         createText();
-
         startLevel(0);
+
         return true;
     }
 
@@ -76,7 +75,7 @@ public class BikeGame extends ActorGame {
     private void startLevel(int level) {
         try {
             if (level < 0 || level >= levels.size())
-                throw new InvalidLevelIndexException();
+                throw new InvalidLevelIndexException(level);
 
             end();
             init();
@@ -97,7 +96,7 @@ public class BikeGame extends ActorGame {
 
             state = GameState.PLAYING;
         } catch (InvalidLevelIndexException | InvalidLevelException error) {
-            System.out.println("Could not load level " + error.getMessage());
+            System.out.println("Could not load level: " + error.getMessage());
         }
     }
 
@@ -147,7 +146,7 @@ public class BikeGame extends ActorGame {
     }
 
     /**
-     * Create text graphics
+     * Initialize text graphics
      */
     private void createText() {
         text = new TextGraphics("", 1f, Color.WHITE, Color.BLACK, 0.02f, false, false, new Vector(0.5f, 0.5f), 1f, 10.0f);
@@ -176,6 +175,9 @@ public class BikeGame extends ActorGame {
         subText.draw(canvas);
     }
 
+    /**
+     * State management
+     */
     public void win() {
         state = GameState.WIN;
         if (currentLevel == levels.size()-1) {

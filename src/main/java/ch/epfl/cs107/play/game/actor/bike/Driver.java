@@ -25,6 +25,7 @@ public class Driver extends Stickman implements Actor {
         this.bike = bike;
     }
 
+    @Override
     public void update(float deltaTime) {
         setHeadLocation(getHeadLocation());
         setShoulderLocation(getShoulderLocation());
@@ -42,13 +43,30 @@ public class Driver extends Stickman implements Actor {
         }
     }
 
+    /**
+     * Overload for #draw(Canvas), adding a transparency parameter
+     * @param canvas
+     * @param alpha
+     */
     public void draw(Canvas canvas, float alpha) {
         super.draw(canvas, bike.getScaledTransform(), alpha);
     }
+    @Override
     public void draw(Canvas canvas) {
         draw(canvas, 1);
     }
 
+    /**
+     * Triggers the cheering animation
+     */
+    public void cheer() {
+        isCheering = true;
+        cheerTime = 0;
+    }
+
+    /**
+     * Body location getters
+     */
     private Vector getHeadLocation() {
         return new Vector(0.0f, 1.75f);
     }
@@ -61,7 +79,6 @@ public class Driver extends Stickman implements Actor {
     private Vector getHandLocation() {
         return new Vector(0.5f, 1.0f);
     }
-
     private Vector getCheeringElbowLocation() {
         return getShoulderLocation().add(getElbowLocation().sub(getShoulderLocation()).rotated(0.8 + Math.cos(cheerAnimation * Math.PI * 2) * 0.4));
     }
@@ -71,7 +88,6 @@ public class Driver extends Stickman implements Actor {
     private Vector getWaistLocation() {
         return new Vector(-0.5f, 0.9f);
     }
-
     private Vector getFootLocation(float angle) {
         return new Vector(0, 0.2f).add(new Vector((float)Math.cos(angle) * 0.2f, (float)Math.sin(angle) * 0.2f));
     }
@@ -81,7 +97,6 @@ public class Driver extends Stickman implements Actor {
     private Vector getRightFootLocation() {
         return getFootLocation(bike.getPedalAngle());
     }
-
     private Vector getKneeLocation(float angle) {
         return new Vector(0.1f, 0.6f).add(new Vector((float)Math.cos(angle) * bike.getPedalRadius(), (float)Math.sin(angle) * bike.getPedalRadius()));
     }
@@ -90,11 +105,6 @@ public class Driver extends Stickman implements Actor {
     }
     private Vector getRightKneeLocation() {
         return getKneeLocation(bike.getPedalAngle());
-    }
-
-    public void cheer() {
-        isCheering = true;
-        cheerTime = 0;
     }
 
 }

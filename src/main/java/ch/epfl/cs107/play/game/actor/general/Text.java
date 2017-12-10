@@ -17,6 +17,7 @@ public class Text extends GameEntity implements Actor {
         this.text = text;
     }
 
+    @Override
     public void draw(Canvas canvas) {
         canvas.drawText(text, 1, getTransform(), Color.GREEN, null, 0, false, false, Vector.ZERO, 0.5f, 0);
     }

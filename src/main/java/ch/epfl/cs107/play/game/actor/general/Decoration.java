@@ -22,4 +22,5 @@ public class Decoration extends GameEntity implements Actor {
     public void draw(Canvas canvas) {
         canvas.drawShape(shape, getTransform(), null, Color.CYAN, 0.05f, 0.5f, 0);
     }
+
 }

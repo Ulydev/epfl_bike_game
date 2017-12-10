@@ -16,7 +16,8 @@ public class XmlBikeLevel extends Level {
     }
 
     @Override
-    public List<Actor> createAllActors(ActorGame game) {
+    public List<Actor> createAllActors(ActorGame game) throws InvalidLevelException {
         return levelLoader.loadActors(game);
     }
+
 }

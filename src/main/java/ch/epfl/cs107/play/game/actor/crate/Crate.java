@@ -33,10 +33,7 @@ public class Crate extends GameEntity implements Actor {
         partBuilder.build();
     }
 
-    public void update(float deltaTime) {
-
-    }
-
+    @Override
     public void draw(Canvas canvas) {
         image.draw(canvas);
     }
