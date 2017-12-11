@@ -4,7 +4,7 @@ import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 
-public abstract class GameEntity {
+public abstract class GameEntity  {
 
     private Entity entity;
     private ActorGame game;

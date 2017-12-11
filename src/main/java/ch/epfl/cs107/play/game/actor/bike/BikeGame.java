@@ -44,7 +44,9 @@ public class BikeGame extends ActorGame {
                 new XmlBikeLevel(getFileSystem(), "levels/pendulums.tmx"),
                 new XmlBikeLevel(getFileSystem(), "levels/slippy.tmx"),
                 new XmlBikeLevel(getFileSystem(), "levels/fill.tmx"),
-                new XmlBikeLevel(getFileSystem(), "levels/trampoline.tmx")
+                new XmlBikeLevel(getFileSystem(), "levels/trampoline.tmx"),
+                new XmlBikeLevel(getFileSystem(), "levels/loop.tmx"),
+                new XmlBikeLevel(getFileSystem(), "levels/walljump.tmx")
         );
     }
 
