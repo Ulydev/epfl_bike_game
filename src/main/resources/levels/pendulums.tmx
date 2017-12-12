@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="50" height="30" tilewidth="1" tileheight="1" nextobjectid="114">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="50" height="30" tilewidth="1" tileheight="1" nextobjectid="126">
  <objectgroup name="objects">
   <object id="12" name="Bike" type="Bike" x="7" y="15" width="1" height="1"/>
   <object id="14" name="Finish" type="Finish" x="44" y="18" width="1" height="1"/>
@@ -29,5 +29,39 @@
   </object>
  </objectgroup>
  <objectgroup name="crates"/>
- <objectgroup name="decoration"/>
+ <objectgroup name="decoration">
+  <object id="114" type="Decoration" x="40" y="23">
+   <polyline points="0,0 -0.311111,0.0666667 -0.4,0.422222 -0.688889,0.422222 -0.711111,0.666667 -1.02222,0.822222 -1.13333,1.02222"/>
+  </object>
+  <object id="116" type="Decoration" x="47.5625" y="16.6563">
+   <polyline points="0,0 -0.03125,0.875 0.09375,1.15625 0,1.375"/>
+  </object>
+  <object id="115" type="Decoration" x="47.1563" y="15.375">
+   <polyline points="0,0 -0.15625,0.375 -0.125,0.75 -0.15625,1.1875 -0.25,1.65625 -0.25,1.90625 -0.25,2.09375"/>
+  </object>
+  <object id="118" type="Decoration" x="3.71875" y="11.1563">
+   <polyline points="0,0 0.15625,0.46875 0.125,1.34375 -0.09375,2.0625 0.15625,3.125 0.09375,3.59375"/>
+  </object>
+  <object id="119" type="Decoration" x="3.25" y="13.2188">
+   <polyline points="0,0 0.03125,0.375 -0.03125,0.75 0.03125,1.0625"/>
+  </object>
+  <object id="120" type="Decoration" x="16.75" y="19.875">
+   <polyline points="0,0 -0.0625,0.34375 0.0625,0.8125 -0.0625,1.34375 0,2.03125"/>
+  </object>
+  <object id="121" type="Decoration" x="19.3438" y="19.375">
+   <polyline points="0,0 -0.125,0.46875 -0.0625,0.78125 -0.09375,1.4375 -0.09375,1.78125 0.03125,1.9375"/>
+  </object>
+  <object id="122" type="Decoration" x="18.8125" y="20.0313">
+   <polyline points="0,0 -0.09375,0.34375 0,0.6875 -0.1875,1.1875"/>
+  </object>
+  <object id="123" type="Decoration" x="18.2813" y="20.0313">
+   <polyline points="0,0 -0.0625,0.28125 0.15625,0.6875 0,1 0.0625,1.3125"/>
+  </object>
+  <object id="124" type="Decoration" x="17.6875" y="20.0938">
+   <polyline points="0,0 -0.15625,0.4375 0.125,1 -0.03125,1.3125 0.0625,1.875 0,2.15625"/>
+  </object>
+  <object id="125" type="Decoration" x="17.25" y="20.0625">
+   <polyline points="0,0 -0.03125,0.28125 0.0625,1 0,1.25"/>
+  </object>
+ </objectgroup>
 </map>

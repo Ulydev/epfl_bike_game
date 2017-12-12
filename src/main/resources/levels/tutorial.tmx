@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="50" height="30" tilewidth="1" tileheight="1" nextobjectid="85">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="50" height="30" tilewidth="1" tileheight="1" nextobjectid="90">
  <objectgroup name="objects">
   <object id="12" name="Bike" type="Bike" x="16" y="21" width="1" height="1"/>
   <object id="14" name="Finish" type="Finish" x="32" y="22" width="1" height="1"/>
@@ -40,6 +40,21 @@
   </object>
   <object id="73" type="Text" x="22" y="18" width="89.5469" height="18.8438">
    <text fontfamily="Arial" pixelsize="1" wrap="1">Welcome :-)</text>
+  </object>
+  <object id="85" type="Decoration" x="41.25" y="17.1875">
+   <polyline points="0,0 -0.34375,0.09375 -0.4375,0.40625 -0.65625,0.53125 -0.65625,0.84375 -0.875,0.96875 -0.96875,1.53125"/>
+  </object>
+  <object id="86" type="Decoration" x="40.375" y="11.6563">
+   <polyline points="0,0 0,0.34375 0.34375,0.46875 0.4375,0.75 0.71875,0.75 0.84375,0.9375"/>
+  </object>
+  <object id="87" type="Decoration" x="37.9688" y="10.0625">
+   <polyline points="0,0 -0.125,0.875 0.125,1.25 0.03125,1.75 -0.03125,2.40625 0.125,2.90625 0,3.5 -0.15625,4.0625 -0.0625,4.78125 -0.03125,5.28125 -0.09375,5.84375"/>
+  </object>
+  <object id="88" type="Decoration" x="36.0625" y="6.15625">
+   <polyline points="0,0 -0.09375,0.6875 -0.09375,1.09375 -0.0625,1.8125 0.125,2.4375 -0.0625,3.0625 -0.125,3.84375 0,4.625 0,5.0625 -0.21875,5.40625 -0.25,6.21875"/>
+  </object>
+  <object id="89" type="Decoration" x="15.375" y="14.7813">
+   <polyline points="0,0 0,0.28125 -0.21875,0.4375 -0.21875,0.65625 -0.40625,0.6875 -0.5625,1 -0.78125,1.0625"/>
   </object>
  </objectgroup>
 </map>
