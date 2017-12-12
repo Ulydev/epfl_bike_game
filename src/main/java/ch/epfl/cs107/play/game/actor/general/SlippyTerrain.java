@@ -8,6 +8,12 @@ import java.awt.*;
 
 public class SlippyTerrain extends Terrain {
 
+    /**
+     * Creates a Terrain with low friction
+     * @param game
+     * @param position
+     * @param polyline
+     */
     public SlippyTerrain(ActorGame game, Vector position, Polyline polyline) {
         super(game, position, polyline);
 

@@ -26,6 +26,11 @@ public class XmlBikeLevelLoader {
     private FileSystem fileSystem;
     private String filePath;
 
+    /**
+     * Creates a new XmlBikeLevelLoader, which can later be loaded with loadActors(ActorGame)
+     * @param fileSystem : the FileSystem instance to use
+     * @param filePath : the path of the file to load
+     */
     public XmlBikeLevelLoader(FileSystem fileSystem, String filePath) {
         this.fileSystem = fileSystem;
         this.filePath = filePath;
@@ -59,7 +64,7 @@ public class XmlBikeLevelLoader {
      * @see #loadFile()
      * @see #loadActorFromNode(ActorGame, Node)
      */
-    public List<Actor> loadActors(ActorGame game) throws InvalidLevelException {
+    public List<Actor> loadActors(ActorGame game) {
         Document document = loadFile();
         if (document == null)
             throw new InvalidLevelException();
@@ -68,13 +73,8 @@ public class XmlBikeLevelLoader {
 
         List<Actor> actors = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
-            try {
-                Actor actor = loadActorFromNode(game, nodeList.item(i));
-                if (actor != null)
-                    actors.add(actor);
-            } catch (EmptyObjectTypeException | NoSuchObjectTypeException error) {
-                System.out.println("Skipped object");
-            }
+            Actor actor = loadActorFromNode(game, nodeList.item(i));
+            actors.add(actor);
         }
         return actors;
     }
@@ -87,7 +87,7 @@ public class XmlBikeLevelLoader {
      * @throws EmptyObjectTypeException
      * @throws NoSuchObjectTypeException
      */
-    private Actor loadActorFromNode(ActorGame game, Node node) throws EmptyObjectTypeException, NoSuchObjectTypeException {
+    private Actor loadActorFromNode(ActorGame game, Node node) {
         NamedNodeMap attributes = node.getAttributes();
         Node typeNode = attributes.getNamedItem("type");
         if (typeNode == null)
@@ -96,19 +96,25 @@ public class XmlBikeLevelLoader {
 
         float
                 x = Float.parseFloat(getItem(attributes, "x")),
-                y = Float.parseFloat(getItem(attributes, "y")) * -1,
-                width = Float.parseFloat(getItem(attributes, "width")),
-                height = Float.parseFloat(getItem(attributes, "height"));
+                y = Float.parseFloat(getItem(attributes, "y")) * -1;
 
         Vector position = new Vector(x, y);
 
         switch(type) {
             case "Crate":
-                return new Crate(game, position, width, height);
             case "Bike":
-                return new Bike(game, position.add(width / 2, height / 2), 1);
             case "Finish":
-                return new Finish(game, position.add(width, -height));
+                float
+                        width = Float.parseFloat(getItem(attributes, "width")),
+                        height = Float.parseFloat(getItem(attributes, "height"));
+                switch(type) {
+                    case "Crate":
+                        return new Crate(game, position, width, height);
+                    case "Bike":
+                        return new Bike(game, position.add(width / 2, height / 2), 1);
+                    case "Finish":
+                        return new Finish(game, position.add(width, -height));
+                }
             case "Terrain":
             case "SlippyTerrain":
             case "Trampoline":
@@ -167,11 +173,13 @@ public class XmlBikeLevelLoader {
      * Retrieves the value of a named item from the specified map
      * @param map : the NamedNodeMap instance to get the item from
      * @param itemName
-     * @return the value of the item, or "0" as a placeholder
+     * @return the value of the item
      */
     private String getItem(NamedNodeMap map, String itemName) {
         Node node = map.getNamedItem(itemName);
-        return (node == null) ? "0" : node.getNodeValue();
+        if (node == null)
+            throw new InvalidLevelException();
+        return node.getNodeValue();
     }
 
     /**

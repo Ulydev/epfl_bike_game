@@ -9,8 +9,14 @@ import java.awt.*;
 
 public class Finish extends Trigger {
 
+    /**
+     * Creates a Trigger representing a Finish line
+     * @param game
+     * @param position
+     */
     public Finish(ActorGame game, Vector position) {
-        super(game, position.add(0, 1.0f), 1.5f);
+        super(game, position, 1.5f);
+        getEntity().setPosition(getPosition().add(0, 1.0f));
     }
 
     @Override

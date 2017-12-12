@@ -13,11 +13,17 @@ public class Wheel extends GameEntity implements Actor {
     private float radius;
     private WheelConstraint constraint;
 
+    /**
+     * Creates a Wheel that can be attached to an Entity
+     * @param game
+     * @param position
+     * @param radius : the radius of the Wheel. Requirement: must be > 0
+     */
     public Wheel(ActorGame game, Vector position, float radius) {
         super(game, position);
 
         if (radius <= 0)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Radius must be positive");
 
         this.radius = radius;
 

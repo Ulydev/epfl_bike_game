@@ -11,6 +11,14 @@ import java.util.List;
 
 public class Crate extends DynamicObject {
 
+    /**
+     * Creates a new moving Crate
+     * @param game
+     * @param position
+     * @param width
+     * @param height
+     * Requirement: width, height > 0
+     */
     public Crate(ActorGame game, Vector position, float width, float height) {
         super(game, position, new Polygon(
                 0, 0,
@@ -20,7 +28,7 @@ public class Crate extends DynamicObject {
         ));
 
         if (width <= 0 || height <= 0)
-            throw new IllegalArgumentException("Dimensions must be non-negative");
+            throw new IllegalArgumentException("Dimensions must be positive");
     }
 
     @Override

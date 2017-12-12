@@ -20,8 +20,17 @@ public class Driver extends Stickman implements Actor {
     private float cheerTime = 0;
     private float cheerAnimation = 0;
 
+    /**
+     * Creates a Driver associated with a bike
+     * @param game
+     * @param bike : the Bike instance of the Driver
+     */
     public Driver(ActorGame game, Bike bike) {
         super(game);
+
+        if (bike == null)
+            throw new NullPointerException("Bike must not be null");
+
         this.bike = bike;
     }
 

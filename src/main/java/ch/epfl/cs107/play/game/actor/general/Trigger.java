@@ -14,8 +14,17 @@ public class Trigger extends GameEntity implements Actor {
     private float radius;
     private BasicContactListener listener;
 
+    /**
+     * Creates a GameEntity with a BasicContactListener that can be used to listen to collisions
+     * @param game
+     * @param position
+     * @param radius : the radius of the circle hitbox. Requirement: must be > 0
+     */
     public Trigger(ActorGame game, Vector position, float radius) {
         super(game, true, position);
+
+        if (radius <= 0)
+            throw new IllegalArgumentException("Radius must be positive");
 
         this.radius = radius;
 

@@ -13,11 +13,20 @@ public class Crate extends GameEntity implements Actor {
 
     private ImageGraphics image;
 
+    /**
+     *
+     * @param game
+     * @param fixed
+     * @param position
+     * @param imageName
+     * @param width
+     * @param height
+     */
     public Crate(ActorGame game, boolean fixed, Vector position, String imageName, float width, float height) {
         super(game, fixed, position);
 
         if (width <= 0 || height <= 0)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Dimensions must be positive");
 
         image = new ImageGraphics(imageName, width, height);
         image.setParent(getEntity());

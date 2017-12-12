@@ -23,6 +23,10 @@ public class Stickman extends GameEntity implements Actor {
     private Vector leftKneeLocation;
     private Vector rightKneeLocation;
 
+    /**
+     * Creates a GameEntity representing a stickman that can be animated
+     * @param game
+     */
     public Stickman(ActorGame game) {
         super(game, true, Vector.ZERO);
     }

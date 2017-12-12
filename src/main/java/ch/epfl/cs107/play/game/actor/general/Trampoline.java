@@ -9,6 +9,12 @@ import java.awt.*;
 
 public class Trampoline extends Terrain {
 
+    /**
+     * Creates a new Terrain with high restitution
+     * @param game
+     * @param position
+     * @param polyline
+     */
     public Trampoline(ActorGame game, Vector position, Polyline polyline) {
         super(game, position, polyline);
         getEntity().getParts().get(0).setRestitution(1.6f);

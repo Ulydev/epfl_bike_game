@@ -15,8 +15,17 @@ public class Terrain extends GameEntity implements Actor {
 
     Shape shape;
 
+    /**
+     * Creates a new Terrain
+     * @param game
+     * @param position
+     * @param polyline : the shape of the Terrain
+     */
     public Terrain(ActorGame game, Vector position, Polyline polyline) {
         super(game, true, position);
+
+        if (polyline == null)
+            throw new NullPointerException("Polyline must not be null");
 
         shape = polyline;
 

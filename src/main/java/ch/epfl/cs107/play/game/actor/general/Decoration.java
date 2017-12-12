@@ -13,8 +13,17 @@ public class Decoration extends GameEntity implements Actor {
 
     private Polyline shape;
 
+    /**
+     * Creates a new GameEntity without any physical representation, that can be placed in the game for visual purposes
+     * @param game
+     * @param polyline : the shape of the Decoration
+     */
     public Decoration(ActorGame game, Polyline polyline) {
         super(game, true, Vector.ZERO);
+
+        if (polyline == null)
+            throw new NullPointerException("Polyline must not be null");
+
         shape = polyline;
     }
 

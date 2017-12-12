@@ -12,8 +12,18 @@ public class Text extends GameEntity implements Actor {
 
     private String text;
 
+    /**
+     * Creates a new Text that can be placed in the game
+     * @param game
+     * @param position
+     * @param text : the string content
+     */
     public Text(ActorGame game, Vector position, String text) {
         super(game, true, position);
+
+        if (text == null)
+            throw new NullPointerException("Text must not be null");
+
         this.text = text;
     }
 

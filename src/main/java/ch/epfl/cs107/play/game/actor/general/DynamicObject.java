@@ -16,8 +16,17 @@ public class DynamicObject extends GameEntity implements Actor {
 
     protected Polygon shape;
 
+    /**
+     * Creates a DynamicObject with the specified shape
+     * @param game
+     * @param position
+     * @param polygon : the shape of the DynamicObject
+     */
     public DynamicObject(ActorGame game, Vector position, Polygon polygon) {
         super(game, false, position);
+
+        if (polygon == null)
+            throw new NullPointerException("Polygon must not be null");
 
         shape = polygon;
 

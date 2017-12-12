@@ -9,9 +9,18 @@ public abstract class GameEntity  {
     private Entity entity;
     private ActorGame game;
 
+    /**
+     * Creates a new GameEntity
+     * @param game : the game the GameEntity belongs to
+     * @param fixed : whether the Entity should be fixed or not
+     * @param position : the initial positon of the Entity
+     * @throws NullPointerException if game or position is null
+     */
     public GameEntity(ActorGame game, boolean fixed, Vector position) {
-        if (game == null || position == null)
-            throw new NullPointerException();
+        if (game == null)
+            throw new NullPointerException("Game must not be null");
+        if (position == null)
+            throw new NullPointerException("Position must not be null");
 
         this.game = game;
 
@@ -26,9 +35,16 @@ public abstract class GameEntity  {
         game.removeActor((Actor)this);
     }
 
+    /**
+     * @return the physical Entity of the GameEntity instance
+     */
     protected Entity getEntity() {
         return entity;
     }
+
+    /**
+     * @return the ActorGame instance the game entity is currently in
+     */
     protected ActorGame getOwner() {
         return game;
     }

@@ -32,8 +32,17 @@ public class Bike extends GameEntity implements Actor {
     private static float LEAN_SPEED = 20.0f;
     private static float WHEEL_OFFSET = 0.9f;
 
+    /**
+     * Creates a new Bike, with two associated Wheels and a Driver
+     * @param game
+     * @param position
+     * @param direction : the initial direction of the Bike, either -1 for left or 1 for right
+     */
     public Bike(ActorGame game, Vector position, int direction) {
         super(game, position);
+
+        if (direction != -1 && direction != 1)
+            throw new IllegalArgumentException("Direction must be either -1 or 1");
 
         this.direction = direction;
         scaleX = direction;

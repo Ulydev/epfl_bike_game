@@ -12,6 +12,6 @@ public abstract class Level {
      * @return the list of actors in the level
      * @throws InvalidLevelException if the level could not be loaded
      */
-    public abstract List<Actor> createAllActors(ActorGame game) throws InvalidLevelException;
+    public abstract List<Actor> createAllActors(ActorGame game);
 
 }

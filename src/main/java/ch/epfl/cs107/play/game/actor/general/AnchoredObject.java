@@ -14,8 +14,19 @@ public class AnchoredObject extends DynamicObject {
 
     private Entity anchorEntity;
 
+    /**
+     * Creates a DynamicObject with a RevoluteConstraint around the specified anchors
+     * @param game
+     * @param position
+     * @param polygon
+     * @param anchor1
+     * @param anchor2
+     */
     public AnchoredObject(ActorGame game, Vector position, Polygon polygon, Vector anchor1, Vector anchor2) {
         super(game, position, polygon);
+
+        if (anchor1 == null || anchor2 == null)
+            throw new NullPointerException("Anchors must not be null");
 
         anchorEntity = getOwner().createEntity(true, Vector.ZERO);
 

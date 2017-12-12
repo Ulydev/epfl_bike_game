@@ -16,6 +16,9 @@ import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Used to track current game state
+ */
 enum GameState {
     PLAYING,
     WIN,
@@ -75,31 +78,27 @@ public class BikeGame extends ActorGame {
      * @param level : the index of the level to start
      */
     private void startLevel(int level) {
-        try {
-            if (level < 0 || level >= levels.size())
-                throw new InvalidLevelIndexException(level);
+        if (level < 0 || level >= levels.size())
+            throw new InvalidLevelIndexException(level);
 
-            end();
-            init();
+        end();
+        init();
 
-            currentLevel = level;
-            List<Actor> actors = levels.get(currentLevel).createAllActors(this);
-            for (Actor actor : actors) {
-                if (actor instanceof Bike) {
-                    bike = (Bike) actor;
-                    setViewCandidate(bike);
-                }
-                if (actor instanceof Finish)
-                    finish = (Finish) actor;
+        currentLevel = level;
+        List<Actor> actors = levels.get(currentLevel).createAllActors(this);
+        for (Actor actor : actors) {
+            if (actor instanceof Bike) {
+                bike = (Bike) actor;
+                setViewCandidate(bike);
             }
-            if (bike == null || finish == null)
-                throw new InvalidLevelException();
-            addActors(actors);
-
-            state = GameState.PLAYING;
-        } catch (InvalidLevelIndexException | InvalidLevelException error) {
-            System.out.println("Could not load level: " + error.getMessage());
+            if (actor instanceof Finish)
+                finish = (Finish) actor;
         }
+        if (bike == null || finish == null)
+            throw new InvalidLevelException();
+        addActors(actors);
+
+        state = GameState.PLAYING;
     }
 
     private void nextLevel() {
